@@ -18,7 +18,7 @@ public class GetCounter
     }
 
     [Function("GetCounter")]
-    public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req)
+    public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req)
     {   
         var id = "1";
         var pk = "1";     

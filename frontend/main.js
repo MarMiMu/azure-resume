@@ -26,13 +26,10 @@ const getVisitCount = async () => {
         if (!response.ok) {
             throw new Error(`Request failed with status ${response.status}`);
         }
-        console.log("Response from API:", response);
         const data = await response.json();
-        console.log("Data received from API:", data);
         document.getElementById("counter").innerText = data.count;
         return data.count;
     } catch (error) {
-        console.error("Failed to fetch visit count:", error);
         document.getElementById("counter").innerText = "—"; // graceful fallback
         return null;
     }
