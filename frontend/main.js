@@ -15,19 +15,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
     getVisitCount();
 })
 
-const functionApiURL = 'https://getresumecountermmm.azurewebsites.net/api/GetResumeCounter?code=oKkjiR0q2Hu8GKzUlsShXtuoVY1ma9aotkQIt4ZXstBDAzFuwJhrEg==';
-const functionApiLocal = 'http://localhost:7071/api/GetResumeCounter';
-const getVisitCount = () => {
-    let count = 30;
-    fetch(functionApiURL).then(response => {
-        return response.json()
-    }).then(response => {
-        console.log("Website called functionApi");
-        count = response.count;
-        document.getElementById("counter").innerText = count;
-    }).catch(function (error) {
-        console.log(error);
-    });
-    return count;
+const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+const functionApiUrl = isLocal ? 
+    'http://localhost:7071/api/GetCounter' : 
+    'https://getresumecountermmm.azurewebsites.net/api/GetResumeCounter?code=oKkjiR0q2Hu8GKzUlsShXtuoVY1ma9aotkQIt4ZXstBDAzFuwJhrEg==';
+const getVisitCount = async () => {
+    try {
+        const response = await fetch(functionApiUrl);
 
+        if (!response.ok) {
+            throw new Error(`Request failed with status ${response.status}`);
+        }
+        console.log("Response from API:", response);
+        const data = await response.json();
+        console.log("Data received from API:", data);
+        document.getElementById("counter").innerText = data.count;
+        return data.count;
+    } catch (error) {
+        console.error("Failed to fetch visit count:", error);
+        document.getElementById("counter").innerText = "—"; // graceful fallback
+        return null;
+    }
 }
