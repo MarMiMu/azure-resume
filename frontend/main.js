@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
 const functionApiUrl = isLocal ? 
     'http://localhost:7071/api/GetCounter' : 
-    'https://getresumecountermmm.azurewebsites.net/api/GetResumeCounter?code=oKkjiR0q2Hu8GKzUlsShXtuoVY1ma9aotkQIt4ZXstBDAzFuwJhrEg==';
+    'https://cloudresumemmm-fa-f4fggugffnefcqec.eastus-01.azurewebsites.net/api/GetCounter';
 const getVisitCount = async () => {
     try {
         const response = await fetch(functionApiUrl);

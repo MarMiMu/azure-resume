@@ -21,7 +21,7 @@ if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("APPLICATIONINSIGHT
 
 builder.Services.AddSingleton<CosmosClient>(sp =>
 {
-    var endpoint = Environment.GetEnvironmentVariable("CosmosDb:Endpoint");
+    var endpoint = Environment.GetEnvironmentVariable("CosmosDb__Endpoint");
     var credential = new DefaultAzureCredential();
     return new CosmosClient(endpoint, credential);
 });

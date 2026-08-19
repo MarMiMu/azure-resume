@@ -6,8 +6,8 @@ public class CosmosDbService : ICosmosDbService
 
     public CosmosDbService(CosmosClient cosmosClient)
     {
-        var databaseName = Environment.GetEnvironmentVariable("CosmosDb:DatabaseName");
-        var containerName = Environment.GetEnvironmentVariable("CosmosDb:ContainerName");
+        var databaseName = Environment.GetEnvironmentVariable("CosmosDb__DatabaseName");
+        var containerName = Environment.GetEnvironmentVariable("CosmosDb__ContainerName");
 
         _container = cosmosClient.GetContainer(databaseName, containerName);
     }
