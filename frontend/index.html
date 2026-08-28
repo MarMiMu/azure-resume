@@ -20,8 +20,8 @@
             <div class="text-lg font-bold">mar.mi.muliadi.cloud</div>
             <div class="hidden md:flex space-x-12 items-center">
                 <a href="#" class="text-selected-text">Home</a>
-                <a href="#work">Work</a>
-                <a href="#hire"><button class="px-6 py-2 bg-theme font-bold">Hire Me</button></a>
+                <a href="#learnings">Learnings</a>
+                <a href="#hire"><button class="px-6 py-2 bg-theme font-bold">Contact Me</button></a>
             </div>
             <div class="md:hidden">
                 <svg width="26" height="18" viewBox="0 0 26 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,17 +40,17 @@
                     <a href="#" class="nav-dot selected-circle block w-7 h-7 rounded-full border-4 border-nav bg-body">
                         <span class="bg-black px-2 py-1 rounded-md ml-10 opacity-0">Home</span>
                     </a>
-                    <a href="#work" class="nav-dot block w-7 h-7 rounded-full border-4 border-nav bg-body">
-                        <span class="bg-black px-2 py-1 rounded-md ml-10 opacity-0">Work</span>
+                    <a href="#learnings" class="nav-dot block w-7 h-7 rounded-full border-4 border-nav bg-body">
+                        <span class="bg-black px-2 py-1 rounded-md ml-10 opacity-0">Learnings</span>
                     </a>
-                    <a href="#hire" class="nav-dot block w-7 h-7 rounded-full border-4 border-nav bg-body">
-                        <span class="bg-black px-2 py-1 rounded-md ml-10 opacity-0">Hire</span>
+                    <a href="#contact" class="nav-dot block w-7 h-7 rounded-full border-4 border-nav bg-body">
+                        <span class="bg-black px-2 py-1 rounded-md ml-10 opacity-0">Contact</span>
                     </a>
                 </div>
             </nav>
             <div class="flex flex-wrap lg:ml-20 justify-center md:justify-start max-w-xl mt-0 md:my-36">
                 <h1 class="font-bold text-5xl md:text-6xl lg:text-7xl text-center md:text-left">
-                    This site is still under construction.
+                    This is my Azure Cloud Resume Challenge Site!
                 </h1>
                 <!-- <div class="w-full flex justify-center md:justify-start">
                     <button class="px-8 py-4 bg-theme text-white font-bold mt-12 flex items-center space-x-3">
@@ -78,7 +78,7 @@
     <!-- My Work -->
     <div class="container mt-64 flex justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full">
         <section class="w-full">
-            <h2 id="work" class="secondary-title">My work</h2>
+            <h2 id="learnings" class="secondary-title">Learnings</h2>
             <p class="section-paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate, doloremque!</p>
 
             <!-- My Work -->
@@ -103,8 +103,60 @@
                             <div class="badge">UI/UX</div>
                             <div class="badge">Frontend development</div>
                         </div>
+                        <p class="text-secondary">
+                            Trying to use Managed Identity in Azure is difficult. 
+                            In order to Read/Write to Cosmos DB, you need to set up the MI to have both: Control Plane and Data Plane access.
+                            Control Plane access is pretty simple. Azure already gives you the option to assign the necessary roles: Cosmos DB Account Reader Role.
+                            However, in order to actually read/write data into a collection in Cosmos DB, you need Data Plane Access in the form of:
+                            - Cosmos DB Built-in Data Reader
+                            - Cosmos DB Built-in Data Contributor
+                            These roles are not available in the Azure Portal. You need to use Azure CLI or PowerShell to assign these roles.
+                            The command is: 
+                            az cosmosdb sql role assignment create 
+                            --account-name {Cosmos DB Account Name} 
+                            --resource-group {Resource Group Name that has the Cosmos DB account} 
+                            --role-definition-id {role id number} --scope "/dbs/{collection name}" 
+                            --principal-id {MI Client Id that you want to assign the role to}
+                            Cosmos DB Built-in Data Reader role id: 00000000-0000-0000-0000-000000000001
+                            Cosmos DB Built-in Data Contributor role id: 00000000-0000-0000-0000-000000000002
+                            In order to do CI/CD with Github Actions, you also need to assign the MI to have access to the storage account that you are using to host the static website.
+                            Luckily, this is easier to do because Azure already has the built-in role: Storage Blob Data Contributor. You can assign this role to the MI in the Azure Portal.
+                        </p>
+                        <p class="text-secondary">
+                            
+                        </p>    
+                        <p class="text-secondary">
+                            Patch vs Read & Write:
+                            For this project, I used the Patch method to update a document in Cosmos DB rather than reading and then writing.
+                            This was done to avoid race conditions where two users are trying to update the same document at the same time.
+                            Using Patch, the document is updated in one atomic operation, which avoids the race condition.
+                        </p>
 
-                        <p class="text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus voluptas vero qui non perspiciatis ea.</p>
+                        <p class="text-secondary">
+                            CI / CD with Github Actions:
+                            In order to do CI/CD with Github Actions, you need to set up a Service Principal in Azure and give it the necessary permissions to deploy to your Azure resources.
+                            - For this, I created a Microsoft Entra ID App registration
+                            - Created a Federated Credential for the App registration with the following settings:
+                                - Federated Credential Scenario: GitHub Actions deploying Azure resources
+                                - Organization: {your github username}
+                                - Organization ID: {your github organization id} -- this can be found by going to: https://api.github.com/users/{your github username} and then taking the value of the "id" field
+                                - Repository: {your github repo name}
+                                - Repository ID: {your github repo id} -- this can be found by going to: https://api.github.com/repos/{your github username}/{your github repo name} and then taking the value of the "id" field
+                                - Entity Type: Branch
+                                - Based on selection: main
+                                - Issuer: https://token.actions.githubusercontent.com (default)
+                                - Subject: repo:{your github username}/{your github repo name}:ref:refs/heads/{your branch name}
+                                - Audience: api://AzureADTokenExchange (default)
+                            - In order for the CI/CD to work, you need to give the App registration the necessary RBAC permissions to deploy files to the Storage Account for storage static web hosting.
+                                - For this, I assigned the App registration the built-in role: Storage Blob Data Contributor to the Storage Account that is hosting the static website.
+                            - For CI/CD from Github Actions, you need to set up a workflow file in Github.
+                                - You can find the yaml in the Github Repo, but essentially, the workflow file does the following:
+                                    - On push to main branch, it will run the workflow
+                                    - It will use the Azure/login action to log in to Azure using the App registration and Federated Credential that was set up earlier
+                                        - I stored the Azure client ID (App Registration's ID), Azure Tenant ID, and Azure Subscription ID in Github Secrets, and then used those secrets in the workflow file to log in to Azure.
+                                    - It will then use the Azure/CLI action to run the az storage blob upload-batch command to upload all files in the dist folder to the Storage Account for static web hosting.
+                                    - It will purge the CDN cache for the Storage Account to ensure that the latest files are served to users.
+                        </p>
                     </div>
 
                 </div>
@@ -128,7 +180,6 @@
                             <div class="badge">UI/UX</div>
                             <div class="badge">Frontend development</div>
                         </div>
-
                         <p class="text-secondary">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi quod incidunt expedita illum odio in.</p>
                     </div>
 
