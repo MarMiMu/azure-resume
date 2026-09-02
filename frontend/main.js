@@ -31,7 +31,7 @@ const getVisitCount = async () => {
         document.getElementById("counter").innerText = data.count;
         return data.count;
     } catch (error) {
-        document.getElementById("counter").innerText = "—"; // graceful fallback
+        document.getElementById("counter").innerText = "-"; // graceful fallback
         return null;
     }
 }

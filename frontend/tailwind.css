@@ -929,7 +929,7 @@ video {
 
 .text-selected-text {
   --tw-text-opacity: 1;
-  color: rgb(163 163 255 / var(--tw-text-opacity));
+  color: rgb(63 63 255 / var(--tw-text-opacity));
 }
 
 .text-white {
