@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marcellinus Muliadi Cloud</title>
-    <link rel="stylesheet" href="tailwind.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="style.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@800&family=Poppins:wght@400;600;700&family=Quicksand:wght@400;500;600;700&display=swap"
         rel="stylesheet">
@@ -66,20 +66,20 @@
             </div>
         </div>
     </div>
-    <!-- My Work -->
+    <!-- My Learnings -->
     <div class="container mt-64 flex justify-between items-center mx-auto px-8 md:px-14 lg:px-24 w-full">
         <section class="w-full">
             <h2 id="learnings" class="secondary-title">Learnings</h2>
             <p class="section-paragraph">These are some of my learnings from this project</p>
 
-            <!-- My Work -->
+            <!-- My Learnings -->
             <div class="space-y-12 my-16">
                 <div
                     class="w-full border border-nav p-16 lg:px-32 lg:py-20 lg:space-x-32 flex justify-center lg:justify-start flex-wrap lg:flex-nowrap">
                     <!-- Learning info -->
                     <div class="flex flex-wrap justify-center text-center lg:text-left lg:block">
                         <h3 class="text-white text-3xl font-semibold underline">Azure Managed Identity</h3>
-                        <article class="prose max-w-3xl mx-auto py-8 text-gray-800 text-secondary">
+                        <article class="prose max-w-3xl py-8 text-secondary">
                             <p class="mb-4 leading-relaxed">
                                 In order to Read/Write to Cosmos DB, you need to set up the Managed Identity (MI) to
                                 have both
@@ -116,24 +116,25 @@
                                 </p>
 
                                 <p class="mb-2 font-medium">The command is:</p>
-                                <pre class="bg-gray-900 text-gray-100 text-sm rounded-lg p-4 overflow-x-auto mb-6"><code>az cosmosdb sql role assignment create \
+                                <ul class="list-disc list-inside mb-6 space-y-1">
+                                    <li>
+                                        <code class="text-white py-4">az cosmosdb sql role assignment create \
                                 --account-name {Cosmos DB Account Name} \
                                 --resource-group {Resource Group Name that has the Cosmos DB account} \
                                 --role-definition-id {role id number} \
                                 --scope "/dbs/{collection name}" \
-                                --principal-id {MI Client Id that you want to assign the role to}</code></pre>
-
+                                --principal-id {MI Client Id that you want to assign the role to}</code>
+                                    </li>
+                                </ul>
                                 <p class="mb-2 font-medium">Built-in role IDs:</p>
                                 <ul class="list-disc list-inside mb-6 space-y-1">
                                     <li>
                                         <span class="font-medium">Cosmos DB Built-in Data Reader:</span>
-                                        <code
-                                            class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">00000000-0000-0000-0000-000000000001</code>
+                                        <code class="text-white">00000000-0000-0000-0000-000000000001</code>
                                     </li>
                                     <li>
                                         <span class="font-medium">Cosmos DB Built-in Data Contributor:</span>
-                                        <code
-                                            class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">00000000-0000-0000-0000-000000000002</code>
+                                        <code class="text-white">00000000-0000-0000-0000-000000000002</code>
                                     </li>
                                 </ul>
 
@@ -161,7 +162,7 @@
                     <!-- Learning info -->
                     <div class="flex flex-wrap justify-center text-center lg:text-left lg:block">
                         <h3 class="text-white text-3xl font-semibold underline">Patch vs Read & Write:</h3>
-                        <article class="prose max-w-3xl mx-auto py-8 text-gray-800 text-secondary">
+                        <article class="prose max-w-3xl py-8 text-secondary">
                             <div class="mt-4">
                                 <p class="text-secondary">
                                     For this project, I used the Patch method to update a document in Cosmos DB rather
@@ -181,11 +182,12 @@
                     <!-- Learning info -->
                     <div class="flex flex-wrap justify-center text-center lg:text-left lg:block">
                         <h3 class="text-white text-3xl font-semibold underline">CI / CD with Github Actions:</h3>
-                        <p class="text-secondary">
-                            In order to do CI/CD with Github Actions, you need to set up a Service Principal in Azure
-                            and give it the necessary permissions to deploy to your Azure resources.</p>
-                        <article class="prose max-w-3xl mx-auto py-8 text-gray-800 text-secondary">
-                            <div class="mt-4">
+                        <article class="prose max-w-3xl py-8 text-secondary">
+                            <p class="text-secondary">
+                                In order to do CI/CD with Github Actions, you need to set up a Service Principal in
+                                Azure
+                                and give it the necessary permissions to deploy to your Azure resources.</p>
+                            <div class="mt-4 text-secondary">
                                 <h3 class="text-2xl font-semibold mt-8 mb-3 text-white">App Registration & Federated
                                     Credential
                                 </h3>
@@ -207,11 +209,10 @@
                                     <li>
                                         <span class="font-medium">Organization ID:</span> {your github organization
                                         id} — this can be found
-                                        by going to
+                                        by going to:
                                         <code
-                                            class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">https://api.github.com/users/{your github username}</code>
-                                        and taking the value of the <code
-                                            class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">"id"</code> field
+                                            class="text-white underline">https://api.github.com/users/{your github username}</code>
+                                        and taking the value of the <code class="text-white">"id"</code> field
                                     </li>
                                     <li>
                                         <span class="font-medium">Repository:</span> {your github repo name}
@@ -220,27 +221,24 @@
                                         <span class="font-medium">Repository ID:</span> {your github repo id} — this
                                         can be found by going to
                                         <code
-                                            class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">https://api.github.com/repos/{your github username}/{your github repo name}</code>
-                                        and taking the value of the <code
-                                            class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">"id"</code> field
+                                            class="text-white">https://api.github.com/repos/{your github username}/{your github repo name}</code>
+                                        and taking the value of the <code class="text-white">"id"</code> field
                                     </li>
                                     <li><span class="font-medium">Entity Type:</span> Branch</li>
                                     <li><span class="font-medium">Based on selection:</span> main</li>
                                     <li>
                                         <span class="font-medium">Issuer:</span>
-                                        <code
-                                            class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">https://token.actions.githubusercontent.com</code>
+                                        <code class="text-white">https://token.actions.githubusercontent.com</code>
                                         (default)
                                     </li>
                                     <li>
                                         <span class="font-medium">Subject:</span>
                                         <code
-                                            class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">repo:{your github username}/{your github repo name}:ref:refs/heads/{your branch name}</code>
+                                            class="text-white">repo:{your github username}/{your github repo name}:ref:refs/heads/{your branch name}</code>
                                     </li>
                                     <li>
                                         <span class="font-medium">Audience:</span>
-                                        <code
-                                            class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">api://AzureADTokenExchange</code>
+                                        <code class="text-white">api://AzureADTokenExchange</code>
                                         (default)
                                     </li>
                                 </ul>
@@ -266,12 +264,10 @@
                                     the GitHub repo, but essentially, the workflow file does the following:
                                 </p>
                                 <ul class="list-disc list-inside mb-6 space-y-2">
-                                    <li>On push to the <code
-                                            class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">main</code> branch, it
+                                    <li>On push to the <code class="text-white">main</code> branch, it
                                         will run the workflow.</li>
                                     <li>
-                                        It will use the <code
-                                            class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">Azure/login</code>
+                                        It will use the <code class="text-white">Azure/login</code>
                                         action to
                                         log in to Azure using the App registration and Federated Credential that was
                                         set up earlier.
@@ -283,14 +279,11 @@
                                         to Azure.
                                     </li>
                                     <li>
-                                        It will then use the <code
-                                            class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">Azure/CLI</code>
+                                        It will then use the <code class="text-white">Azure/CLI</code>
                                         action
                                         to run the
-                                        <code
-                                            class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">az storage blob upload-batch</code>
-                                        command to upload all files in the <code
-                                            class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">dist</code>
+                                        <code class="text-white">az storage blob upload-batch</code>
+                                        command to upload all files in the <code class="text-white">dist</code>
                                         folder to the Storage Account for static web hosting.
                                     </li>
                                     <li>It will purge the CDN cache for the Storage Account to ensure that the
@@ -346,16 +339,16 @@
                     <div class="flex mt-20 space-x-6">
                         <!-- GitHub -->
                         <a href="https://github.com/MarMiMu">
-                            <svg class = "icon" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"
-                                fill="#FFFFFF">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+                                viewBox="0 0 24 24" fill="#FFFFFF">
                                 <path
                                     d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                             </svg>
                         </a>
                         <!-- LinkedIn -->
                         <a href="https://www.linkedin.com/in/marcellinus-m/">
-                            <svg class = "icon" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"
-                                fill="#FFFFFF">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+                                viewBox="0 0 24 24" fill="#FFFFFF">
                                 <path
                                     d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                             </svg>

@@ -1,0 +1,319 @@
+/* ============================================
+   Base reset & fonts
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6, p, figure, blockquote {
+  margin: 0;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  font-size: 100%;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+}
+
+input, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  color: inherit;
+}
+
+svg {
+  display: block;
+  vertical-align: middle;
+}
+
+[id] {
+  scroll-margin-top: 100px;
+}
+
+/* ============================================
+   Layout
+   ============================================ */
+.container {
+  width: 100%;
+}
+@media (min-width: 640px) { .container { max-width: 640px; } }
+@media (min-width: 768px) { .container { max-width: 768px; } }
+@media (min-width: 1024px) { .container { max-width: 1024px; } }
+@media (min-width: 1280px) { .container { max-width: 1280px; } }
+@media (min-width: 1536px) { .container { max-width: 1536px; } }
+
+.flex { display: flex; }
+.grid { display: grid; }
+.block { display: block; }
+.inline-block { display: inline-block; }
+.hidden { display: none; }
+
+.flex-wrap { flex-wrap: wrap; }
+
+.fixed { position: fixed; }
+.absolute { position: absolute; }
+
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.items-center { align-items: center; }
+
+.transform { transform: translateX(0); }
+.-translate-x-1\/2 { transform: translateX(-50%); }
+
+.left-50 { left: 50%; }
+.left-percentage { left: 5%; }
+
+.w-full { width: 100%; }
+.w-7 { width: 1.75rem; }
+.h-7 { height: 1.75rem; }
+.h-56 { height: 14rem; }
+
+.max-w-xl { max-width: 36rem; }
+.max-w-3xl { max-width: 48rem; }
+
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+.resize-none { resize: none; }
+.overflow-x-auto { overflow-x: auto; }
+
+.rounded { border-radius: 0.25rem; }
+.rounded-md { border-radius: 0.375rem; }
+.rounded-lg { border-radius: 0.5rem; }
+.rounded-full { border-radius: 9999px; }
+
+.border { border-width: 1px; }
+.border-4 { border-width: 4px; }
+
+.list-disc { list-style-type: disc; }
+.list-inside { list-style-position: inside; }
+
+/* ============================================
+   Spacing (padding / margin) — Tailwind default scale
+   ============================================ */
+.p-4 { padding: 1rem; }
+.p-16 { padding: 4rem; }
+
+.px-1\.5 { padding-left: 0.375rem; padding-right: 0.375rem; }
+.px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.px-8 { padding-left: 2rem; padding-right: 2rem; }
+
+.py-0\.5 { padding-top: 0.125rem; padding-bottom: 0.125rem; }
+.py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+.py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+
+.pb-12 { padding-bottom: 3rem; }
+
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 0.75rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+
+.ml-10 { margin-left: 2.5rem; }
+
+.mt-0 { margin-top: 0; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 0.75rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mt-8 { margin-top: 2rem; }
+.mt-12 { margin-top: 3rem; }
+.mt-16 { margin-top: 4rem; }
+.mt-20 { margin-top: 5rem; }
+.mt-24 { margin-top: 6rem; }
+.mt-36 { margin-top: 9rem; }
+.mt-64 { margin-top: 16rem; }
+
+.my-16 { margin-top: 4rem; margin-bottom: 4rem; }
+
+.space-x-3 > * + * { margin-left: 0.75rem; }
+.space-x-6 > * + * { margin-left: 1.5rem; }
+.space-x-12 > * + * { margin-left: 3rem; }
+
+.space-y-1 > * + * { margin-top: 0.25rem; }
+.space-y-6 > * + * { margin-top: 1.5rem; }
+.space-y-12 > * + * { margin-top: 3rem; }
+
+.gap-8 { gap: 2rem; }
+
+/* ============================================
+   Typography
+   ============================================ */
+.font-poppins { font-family: 'Poppins', sans-serif; }
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.font-medium { font-weight: 500; }
+
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+.text-2xl { font-size: 1.5rem; line-height: 2rem; }
+.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+.text-5xl { font-size: 3rem; line-height: 1; }
+.text-6xl { font-size: 3.75rem; line-height: 1; }
+.text-7xl { font-size: 4.5rem; line-height: 1; }
+
+.text-center { text-align: center; }
+.leading-relaxed { line-height: 1.625; }
+.underline { text-decoration: underline; }
+.opacity-0 { opacity: 0; }
+
+/* ============================================
+   Colors
+   ============================================ */
+.bg-body { background-color: #17171F; }
+.bg-black { background-color: #000000; }
+.bg-input { background-color: #2A2A35; }
+.bg-gray-100 { background-color: #f3f4f6; }
+.bg-gray-900 { background-color: #111827; }
+
+.text-white { color: #ffffff; }
+.text-selected-text { color: #A3A3FF; }
+.text-secondary { color: #9191A4; }
+.text-gray-100 { color: #f3f4f6; }
+.text-gray-800 { color: #1f2937; }
+
+.border-nav { border-color: #404053; }
+.border-input-border { border-color: #565666; }
+
+.bg-theme {
+  background-color: #3F3FFF;
+  transition: background-color 200ms;
+}
+.bg-theme:hover {
+  background-color: #3F6CFF;
+}
+
+/* ============================================
+   Prose (article body) minimal styling
+   ============================================ */
+.prose code {
+  font-family: ui-monospace, monospace;
+}
+.prose pre code {
+  background: transparent;
+  padding: 0;
+}
+
+/* ============================================
+   Custom components (from original index.css)
+   ============================================ */
+.secondary-title {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+}
+
+.secondary-title::before {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 0.5rem;
+  background-color: #3F3FFF;
+  border-radius: 9999px;
+  margin-bottom: 0.25rem;
+}
+
+.section-paragraph {
+  color: #9191A4;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  max-width: 48rem;
+}
+
+.badge {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+  background-color: #3F3F51;
+}
+
+.nav-dot {
+  transition: background 200ms, border-color 200ms;
+}
+
+.selected-circle {
+  border-color: #3F3FFF;
+  background-color: #3F3FFF;
+}
+
+.nav-dot:hover span {
+  opacity: 1;
+}
+
+.icon {
+  fill: #ffffff;
+  transition: fill 200ms;
+}
+
+.icon:hover {
+  fill: #3f6cff;
+}
+
+/* ============================================
+   Responsive utilities (md: 768px, lg: 1024px, xl: 1280px)
+   ============================================ */
+@media (min-width: 768px) {
+  .md\:flex { display: flex; }
+  .md\:hidden { display: none; }
+  .md\:flex-nowrap { flex-wrap: nowrap; }
+  .md\:justify-start { justify-content: flex-start; }
+  .md\:text-left { text-align: left; }
+  .md\:px-14 { padding-left: 3.5rem; padding-right: 3.5rem; }
+  .md\:my-36 { margin-top: 9rem; margin-bottom: 9rem; }
+  .md\:text-2xl { font-size: 1.5rem; line-height: 2rem; }
+  .md\:text-6xl { font-size: 3.75rem; line-height: 1; }
+}
+
+@media (min-width: 1024px) {
+  .lg\:block { display: block; }
+  .lg\:flex-nowrap { flex-wrap: nowrap; }
+  .lg\:justify-start { justify-content: flex-start; }
+  .lg\:text-left { text-align: left; }
+  .lg\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lg\:w-4 { width: 1rem; }
+  .lg\:mr-24 { margin-right: 6rem; }
+  .lg\:ml-20 { margin-left: 5rem; }
+  .lg\:px-24 { padding-left: 6rem; padding-right: 6rem; }
+  .lg\:px-32 { padding-left: 8rem; padding-right: 8rem; }
+  .lg\:py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+  .lg\:space-x-32 > * + * { margin-left: 8rem; }
+  .lg\:gap-32 { gap: 8rem; }
+  .lg\:text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+  .lg\:text-7xl { font-size: 4.5rem; line-height: 1; }
+}
+
+@media (min-width: 1280px) {
+  .xl\:block { display: block; }
+}
