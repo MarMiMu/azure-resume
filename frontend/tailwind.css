@@ -337,14 +337,6 @@ legend {
   padding: 0;
 }
 
-ol,
-ul,
-menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
 /*
 Reset default styling for dialogs.
 */
@@ -937,7 +929,7 @@ video {
 
 .text-selected-text {
   --tw-text-opacity: 1;
-  color: rgb(163 163 255 / var(--tw-text-opacity));
+  color: rgb(63 63 255 / var(--tw-text-opacity));
 }
 
 .text-white {
@@ -1037,6 +1029,11 @@ body {
 
 .nav-dot:hover span {
   opacity: 1;
+}
+
+.bg-theme:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(63 108 255 / var(--tw-bg-opacity));
 }
 
 @media (min-width: 768px) {
@@ -1212,4 +1209,13 @@ body {
   .xl\:block {
     display: block;
   }
+}
+
+.icon {
+  fill: #ffffff;
+  transition: fill 200ms;
+}
+
+.icon:hover {
+  fill: #3f6cff;
 }
